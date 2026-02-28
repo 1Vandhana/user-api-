@@ -3,6 +3,7 @@ const express = require("express");
 const app =express(); // created express app
 
 const PORT =3000; /// craeted port 
+
 app.use(express.json());
 
 /* Data Source in memory */
@@ -72,7 +73,7 @@ app.post("/user", validateUser,(req,res)=>{
 
     res.status(201).json({
         message:"User created successfully.",
-        user:newUSer,
+        user:newUser,
     });
 });
 
@@ -100,8 +101,8 @@ app.put("/user/:id",validateUser,(req,res)=>{
 
 // DELETE /user/:id -Delete user 
 
-app.delete("user/:id", (req,res)=>{
-    const userIndex =users.indIndex(
+app.delete("/user/:id", (req,res)=>{
+    const userIndex =users.findIndex(
         (u) => u.id == req.params.id
     );
     if(userIndex === -1){
